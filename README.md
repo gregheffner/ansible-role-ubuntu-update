@@ -39,7 +39,7 @@ cleanup_packages: true                # Clean up unused packages
 ```yaml
 perform_reboot: true                   # Enable automatic reboot (default: true)
 force_reboot: true                     # Force reboot regardless of necessity
-reboot_method: "modern"               # "modern" (reboot module) or "legacy" (shell command)
+reboot_method: "legacy"               # "legacy" (shell command) or "modern" (reboot module) 
 reboot_timeout: 600                   # Timeout for reboot operation
 connect_timeout: 20                   # Connection timeout after reboot
 ```

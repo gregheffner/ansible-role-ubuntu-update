@@ -14,7 +14,7 @@ cleanup_packages: true
 # Reboot settings
 perform_reboot: true
 force_reboot: true
-reboot_method: "modern"
+reboot_method: "legacy"
 reboot_timeout: 600
 connect_timeout: 20
 
