@@ -1,0 +1,36 @@
+---
+galaxy_info:
+  author: gregheffner
+  description: Comprehensive system update role for Debian/Ubuntu and macOS with Docker support, package management, and optional reboots
+  company: 
+  
+  license: MIT
+  
+  min_ansible_version: "2.9"
+  
+  platforms:
+    - name: Ubuntu
+      versions:
+        - focal
+        - jammy
+        - noble
+    - name: Debian
+      versions:
+        - bullseye
+        - bookworm
+    - name: MacOSX
+      versions:
+        - all
+  
+  galaxy_tags:
+    - system
+    - update
+    - maintenance
+    - docker
+    - homebrew
+    - reboot
+    - packages
+    - automation
+    - patching
+
+dependencies: []

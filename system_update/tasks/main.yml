@@ -1,0 +1,18 @@
+---
+# Main tasks file for system_update role
+
+- name: Include Docker tasks
+  include_tasks: docker.yml
+  when: update_docker | default(true)
+
+- name: Include Debian/Ubuntu tasks
+  include_tasks: debian.yml
+  when: ansible_os_family == "Debian" and update_packages | default(true)
+
+- name: Include macOS Homebrew tasks
+  include_tasks: homebrew.yml
+  when: ansible_os_family == "Darwin" and update_homebrew | default(true)
+
+- name: Include reboot tasks
+  include_tasks: reboot.yml
+  when: perform_reboot | default(true)

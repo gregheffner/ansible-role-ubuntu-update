@@ -1,0 +1,44 @@
+---
+# macOS Homebrew package management tasks
+
+- name: Check if Homebrew is installed
+  shell: which brew
+  register: brew_check
+  changed_when: false
+  failed_when: false
+
+- name: Update Homebrew
+  shell: brew update
+  when: 
+    - brew_check.stdout != ""
+    - update_homebrew_packages | default(true)
+  register: brew_update_result
+
+- name: Upgrade Homebrew packages
+  shell: brew upgrade
+  when: 
+    - brew_check.stdout != ""
+    - upgrade_homebrew_packages | default(true)
+  register: brew_upgrade_result
+
+- name: Remove stale Homebrew packages
+  shell: brew cleanup --prune=all
+  when: 
+    - brew_check.stdout != ""
+    - cleanup_homebrew_packages | default(true)
+  register: brew_cleanup_result
+
+- name: Display Homebrew update results
+  debug:
+    msg: |
+      Homebrew update completed:
+      - Homebrew found: {{ brew_check.stdout != "" }}
+      - Update ran: {{ brew_update_result.changed | default(false) }}
+      - Packages upgraded: {{ brew_upgrade_result.changed | default(false) }}
+      - Cleanup completed: {{ brew_cleanup_result.changed | default(false) }}
+  when: brew_check.stdout != ""
+
+- name: Homebrew not found message
+  debug:
+    msg: "Homebrew not found on this system, skipping Homebrew tasks"
+  when: brew_check.stdout == ""
