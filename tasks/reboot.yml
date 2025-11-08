@@ -25,6 +25,7 @@
   become: true
   when: 
     - perform_reboot | default(false)
+    - (force_reboot | default(false)) or (reboot_required_debian.stat.exists | default(false))
     - reboot_method | default('modern') == 'modern'
 
 - name: Run post-reboot script if specified

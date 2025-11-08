@@ -37,8 +37,8 @@ cleanup_packages: true                # Clean up unused packages
 
 ### Reboot Settings
 ```yaml
-perform_reboot: true                   # Enable automatic reboot (default: true)
-force_reboot: true                     # Force reboot regardless of necessity
+perform_reboot: false                  # Enable automatic reboot
+force_reboot: false                    # Force reboot regardless of necessity
 reboot_method: "modern"               # "modern" (reboot module) or "legacy" (shell command)
 reboot_timeout: 600                   # Timeout for reboot operation
 connect_timeout: 20                   # Connection timeout after reboot
@@ -62,7 +62,7 @@ post_reboot_script_path: ""           # Path to script to run after reboot
     perform_reboot: true              # Reboot after updates
     update_docker: true               # Restart Docker containers
   roles:
-    - gregheffner.ubuntu-update
+    - system_update
 ```
 
 ### 2. Monthly Comprehensive Updates
@@ -76,7 +76,7 @@ post_reboot_script_path: ""           # Path to script to run after reboot
     update_docker: true
     cleanup_packages: true
   roles:
-    - gregheffner.ubuntu-update
+    - system_update
 ```
 
 ### 3. Docker-only Updates
@@ -88,7 +88,7 @@ post_reboot_script_path: ""           # Path to script to run after reboot
     perform_reboot: false            # No reboot needed
     update_docker: true              # Only restart Docker
   roles:
-    - gregheffner.ubuntu-update
+    - system_update
 ```
 
 ### 4. Basic Package Updates (No Reboot)
@@ -99,32 +99,24 @@ post_reboot_script_path: ""           # Path to script to run after reboot
   vars:
     perform_reboot: false            # Manual reboot later
   roles:
-    - gregheffner.ubuntu-update
+    - system_update
 ```
 
 ## Installation
 
-### From Ansible Galaxy (Recommended)
-```bash
-# Install from Galaxy
-ansible-galaxy install gregheffner.ubuntu-update
-
-# Or add to requirements.yml
-- name: gregheffner.ubuntu-update
-```
-
 ### From GitHub
 ```bash
 # Clone the repository
-git clone https://github.com/gregheffner/ansible-role-ubuntu-update.git
+git clone https://github.com/gregheffner/ansible-roles.git
 
 # Copy role to your roles directory
-cp -r ansible-role-ubuntu-update ~/.ansible/roles/
+cp -r ansible-roles/system_update ~/.ansible/roles/
 
 # Or use in requirements.yml
-- src: https://github.com/gregheffner/ansible-role-ubuntu-update.git
+- src: https://github.com/gregheffner/ansible-roles.git
   scm: git
-  name: ubuntu_update
+  path: system_update
+  name: system_update
 ```
 
 ## What Gets Updated

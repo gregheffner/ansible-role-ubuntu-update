@@ -12,8 +12,8 @@ perform_dist_upgrade: false
 cleanup_packages: true
 
 # Reboot settings
-perform_reboot: true
-force_reboot: true
+perform_reboot: false
+force_reboot: false
 reboot_method: "modern"
 reboot_timeout: 600
 connect_timeout: 20
