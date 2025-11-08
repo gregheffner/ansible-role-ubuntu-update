@@ -62,7 +62,7 @@ post_reboot_script_path: ""           # Path to script to run after reboot
     perform_reboot: true              # Reboot after updates
     update_docker: true               # Restart Docker containers
   roles:
-    - gregheffner.ansible_role_ubuntu_update
+    - gregheffner.ubuntu-update
 ```
 
 ### 2. Monthly Comprehensive Updates
@@ -76,7 +76,7 @@ post_reboot_script_path: ""           # Path to script to run after reboot
     update_docker: true
     cleanup_packages: true
   roles:
-    - gregheffner.ansible_role_ubuntu_update
+    - gregheffner.ubuntu-update
 ```
 
 ### 3. Docker-only Updates
@@ -88,7 +88,7 @@ post_reboot_script_path: ""           # Path to script to run after reboot
     perform_reboot: false            # No reboot needed
     update_docker: true              # Only restart Docker
   roles:
-    - gregheffner.ansible_role_ubuntu_update
+    - gregheffner.ubuntu-update
 ```
 
 ### 4. Basic Package Updates (No Reboot)
@@ -99,7 +99,7 @@ post_reboot_script_path: ""           # Path to script to run after reboot
   vars:
     perform_reboot: false            # Manual reboot later
   roles:
-    - gregheffner.ansible_role_ubuntu_update
+    - gregheffner.ubuntu-update
 ```
 
 ## Installation
@@ -107,10 +107,10 @@ post_reboot_script_path: ""           # Path to script to run after reboot
 ### From Ansible Galaxy (Recommended)
 ```bash
 # Install from Galaxy
-ansible-galaxy install gregheffner.ansible_role_ubuntu_update
+ansible-galaxy install gregheffner.ubuntu-update
 
 # Or add to requirements.yml
-- name: gregheffner.ansible_role_ubuntu_update
+- name: gregheffner.ubuntu-update
 ```
 
 ### From GitHub
