@@ -1,5 +1,28 @@
 # System Update Role
 
+## Background: Evolution from Playbook
+
+This role began as a simple [update.yml playbook](https://github.com/gregheffner/playbooks/blob/main/update.yml) for updating Ubuntu systems and restarting Docker containers. The original playbook was a single file with hardcoded tasks for:
+- Restarting all Docker containers
+- Updating all APT packages
+- Performing a distribution upgrade
+- Cleaning up unused packages
+
+While effective for one-off updates, the playbook had limitations:
+- Not reusable across projects
+- No configurable variables
+- No support for handlers, meta, or post-reboot scripts
+- Hardcoded logic and limited error handling
+
+To address these, the playbook was refactored into a robust, reusable Ansible role with:
+- Modular tasks and handlers
+- Configurable variables for all features
+- Optional Docker, reboot, and post-reboot logic
+- Safety features and best practices
+- Support for Ansible Galaxy and requirements.yml
+
+This evolution enables safer, more flexible, and maintainable system updates for any Ubuntu environment.
+
 This Ansible role handles comprehensive system updates for Ubuntu systems, including Docker container management and optional reboot functionality.
 
 ## Features
